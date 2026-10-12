@@ -2,195 +2,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0618">
-  <title>Truth or Dare Arena</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      color: white;
-      background: radial-gradient(circle at top, #32105b, #0b0618 65%);
-    }
-    header {
-      padding: 22px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ffffff18;
-    }
-    .logo { font-size: 19px; font-weight: 900; }
-    .logo span { color: #c084fc; }
-    .tag { color: #c4b5fd; font-size: 11px; }
-    main {
-      width: min(100% - 32px, 600px);
-      margin: 48px auto;
-      text-align: center;
-    }
-    .pill {
-      display: inline-block;
-      padding: 8px 13px;
-      border: 1px solid #a855f755;
-      background: #a855f71b;
-      border-radius: 30px;
-      color: #d8b4fe;
-      font-size: 12px;
-    }
-    h1 {
-      font-size: clamp(38px, 10vw, 62px);
-      line-height: 1.05;
-      margin: 22px 0 15px;
-    }
-    h1 span { color: #c084fc; }
-    .intro {
-      color: #c4bfd3;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-    .panel {
-      margin-top: 30px;
-      padding: 23px;
-      background: #ffffff08;
-      border: 1px solid #ffffff20;
-      border-radius: 22px;
-      text-align: left;
-    }
-    label {
-      display: block;
-      margin: 15px 0 8px;
-      font-size: 13px;
-      color: #ddd6fe;
-    }
-    input, select {
-      width: 100%;
-      padding: 14px;
-      color: white;
-      background: #171024;
-      border: 1px solid #ffffff25;
-      border-radius: 11px;
-      font-size: 15px;
-    }
-    button {
-      width: 100%;
-      padding: 15px;
-      margin-top: 18px;
-      border: 0;
-      border-radius: 12px;
-      background: linear-gradient(100deg, #9333ea, #6d28d9);
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 22px;
-      text-align: left;
-    }
-    .feature {
-      padding: 17px;
-      border-radius: 15px;
-      background: #ffffff08;
-      border: 1px solid #ffffff15;
-    }
-    .feature b { font-size: 14px; }
-    .feature p {
-      color: #aaa2bd;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-    footer {
-      padding: 25px 15px;
-      color: #817891;
-      text-align: center;
-      font-size: 12px;
-    }
-    #notice {
-      color: #d8b4fe;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10071f">
+<title>Truth or Dare Arena</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top,#401268,#10071f 65%);color:#fff;font-family:Arial,sans-serif;min-height:100vh}
+header{padding:20px;text-align:center;border-bottom:1px solid #ffffff22;font-weight:900;font-size:20px}
+header span{color:#d8a0ff}
+main{width:min(100% - 26px,620px);margin:22px auto}
+.panel{background:#ffffff0b;border:1px solid #ffffff22;border-radius:18px;padding:18px;margin-bottom:16px}
+h2{font-size:19px;margin:0 0 14px}
+input,select{width:100%;padding:13px;border-radius:10px;border:1px solid #ffffff30;background:#211332;color:white;margin:5px 0 12px;font-size:15px}
+button{border:0;border-radius:11px;background:linear-gradient(100deg,#a855f7,#6d28d9);color:white;padding:13px;font-size:15px;font-weight:bold;cursor:pointer}
+button:active{transform:scale(.98)}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap}
+.btnrow button{flex:1;min-width:110px}
+.secondary{background:#30213e;border:1px solid #ffffff25}
+.danger{background:#713047}
+#players{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.player{padding:8px 11px;background:#40215c;border-radius:20px;font-size:13px}
+.player button{padding:2px 6px;margin-left:5px;background:#713047}
+#bottle{font-size:75px;text-align:center;margin:10px auto;transition:transform 1.2s ease}
+.center{text-align:center}
+#result{font-size:19px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.small{color:#c8b7d8;font-size:13px;line-height:1.5}
+.hidden{display:none}
+label{font-size:13px;color:#dec8f5}
+footer{text-align:center;padding:20px;color:#a99bb7;font-size:12px}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">TRUTH OR DARE <span>ARENA</span></div>
-    <div class="tag">MULTIPLAYER</div>
-  </header>
+<header>TRUTH OR DARE <span>ARENA</span></header>
+<main>
+<section class="panel" id="setup">
+<h2>🎮 Enter the Arena</h2>
+<label>Your nickname</label>
+<input id="nickname" maxlength="20" placeholder="Enter nickname">
+<label>Game mode</label>
+<select id="mode">
+<option value="kids">Kids — clean fun</option>
+<option value="teen">Teenagers</option>
+<option value="adult">Adults (18+)</option>
+<option value="mixed">Mixed (18+ only)</option>
+<option value="couples">Couples (18+ only)</option>
+</select>
+<button style="width:100%" onclick="enterGame()">Start Playing →</button>
+<p class="small">Adults, Mixed and Couples are intended for adults aged 18 or over.</p>
+</section>
 
-  <main>
-    <div class="pill">✦ YOUR FRIENDS. YOUR CHALLENGES.</div>
-    <h1>How brave<br>are <span>you?</span></h1>
-    <p class="intro">
-      Spin the bottle. Reveal the truth.<br>
-      Take the dare. Make memories.
-    </p>
+<section class="panel hidden" id="game">
+<h2>👥 Players</h2>
+<div class="btnrow">
+<input id="newPlayer" placeholder="Add player nickname" maxlength="20" style="flex:2;min-width:150px">
+<button onclick="addPlayer()">+ Add</button>
+</div>
+<div id="players"></div>
+<p class="small">Players can be selected repeatedly by luck. Everyone can skip a challenge.</p>
+</section>
 
-    <section class="panel">
-      <h2 style="margin-top:0">Enter the Arena</h2>
-      <label for="nickname">Choose your nickname</label>
-      <input id="nickname" maxlength="20" placeholder="Enter a nickname">
+<section class="panel hidden" id="play">
+<h2>🍾 Bottle Spin</h2>
+<div id="bottle">🍾</div>
+<button style="width:100%" onclick="spinBottle()">SPIN THE BOTTLE</button>
+<div class="center" style="margin-top:16px">
+<div id="result">Add players, then spin!</div>
+</div>
+<div class="btnrow">
+<button onclick="drawChallenge('truth')">🤫 Truth</button>
+<button onclick="drawChallenge('dare')">🔥 Dare</button>
+</div>
+<div class="btnrow">
+<button class="secondary" onclick="punishment()">🎡 Punishment</button>
+<button class="secondary" onclick="skipChallenge()">⏭️ Skip</button>
+</div>
+</section>
 
-      <label for="mode">Choose your game mode</label>
-      <select id="mode">
-        <option value="kids">Kids</option>
-        <option value="teen">Teenagers</option>
-        <option value="adult">Adults (18+)</option>
-        <option value="mixed">Mixed (18+)</option>
-        <option value="couples">Couples</option>
-      </select>
+<section class="panel hidden" id="custom">
+<h2>✍️ Add Your Own Challenge</h2>
+<label>Challenge type</label>
+<select id="customType"><option value="truth">Truth</option><option value="dare">Dare</option></select>
+<input id="customText" maxlength="180" placeholder="Write a safe challenge">
+<button style="width:100%" onclick="addCustom()">Add Challenge</button>
+<p class="small">Custom challenges join this phone's shared pool for the selected mode. They are not sent online.</p>
+</section>
 
-      <button onclick="startGame()">Enter Game Lobby →</button>
-      <p id="notice" role="status"></p>
-    </section>
+<section class="panel hidden" id="round">
+<h2>🔄 Round Controls</h2>
+<p class="small" id="roundInfo">Challenges used: 0</p>
+<div class="btnrow">
+<button class="secondary" onclick="newRound()">Start New Round</button>
+<button class="danger" onclick="resetGame()">Reset Game</button>
+</div>
+</section>
+</main>
+<footer>TRUTH OR DARE ARENA · Consent first. Respect every player's choice.</footer>
 
-    <div class="features">
-      <div class="feature">
-        <b>🎯 Bottle Spin</b>
-        <p>Let luck choose the next player.</p>
-      </div>
-      <div class="feature">
-        <b>🔥 Truth & Dare</b>
-        <p>Random challenges, no repeats in a game.</p>
-      </div>
-      <div class="feature">
-        <b>🎡 Punishment Wheel</b>
-        <p>Funny punishments when you skip.</p>
-      </div>
-      <div class="feature">
-        <b>✍️ Your Own</b>
-        <p>Add custom truths and dares to the shared pool.</p>
-      </div>
-    </div>
-  </main>
-
-  <footer>TRUTH OR DARE ARENA · Play fair. Respect every player's choice.</footer>
-
-  <script>
-    function startGame() {
-      const nickname = document.getElementById("nickname").value.trim();
-      const mode = document.getElementById("mode").value;
-      const notice = document.getElementById("notice");
-
-      if (!nickname) {
-        notice.textContent = "Please enter a nickname first.";
-        return;
-      }
-
-      if (mode === "adult" || mode === "mixed" || mode === "couples") {
-        notice.textContent =
-          "Adult mode selected. Age verification and the real multiplayer lobby will be added before launch.";
-        return;
-      }
-
-      notice.textContent =
-        "Welcome, " + nickname + "! Your selected mode is saved for this demo. The multiplayer lobby is coming next.";
-    }
-  </script>
+<script>
+const pools={
+kids:{
+truth:["What is your funniest silly face?","What is your favourite cartoon?","What always makes you laugh?","What is one kind thing you did?","What is your funniest harmless mistake?"],
+dare:["Do your silliest dance for 10 seconds.","Talk like a robot for one turn.","Make three funny faces.","Sing one line of a favourite song.","Walk like a penguin for 10 seconds."]
+},
+teen:{
+truth:["What is a skill you wish you had?","What is your most embarrassing harmless moment?","Who makes you laugh the most?","What is one thing you are proud of?","What is a funny misunderstanding you had?"],
+dare:["Do a dramatic movie dialogue.","Speak in a funny accent for one turn.","Make up a two-line rap.","Do a 10-second victory dance.","Give everyone a funny nickname they approve of."]
+},
+adult:{
+truth:["What is your most unusual habit?","What first impression do people get wrong about you?","What is your funniest awkward moment?","What quality do you admire in others?","What is a harmless secret talent you have?"],
+dare:["Deliver a dramatic compliment to the group.","Do your best movie-star entrance.","Invent a cheesy pickup line.","Sing a song chorus dramatically.","Tell a joke in your most serious voice."]
+},
+mixed:{
+truth:["What is your most unusual habit?","What makes you instantly laugh?","What is a skill you want to learn?","What is your funniest harmless memory?","What is one green flag in a person?"],
+dare:["Do a dramatic movie dialogue.","Make up a cheesy pickup line.","Dance for 10 seconds if comfortable.","Give a sincere compliment to someone.","Speak like a news reporter for one turn."]
+},
+couples:{
+truth:["What little gesture makes you feel appreciated?","What is your idea of a perfect date?","What quality do you find attractive?","What is a sweet memory you cherish?","What makes you feel cared for?"],
+dare:["Give your partner a sincere compliment.","Describe your ideal date in 20 seconds.","Make a cute heart gesture if comfortable.","Say something you appreciate about your partner.","Create a playful romantic movie title."]
+}};
+const punishments=["Speak like a robot for one turn.","Do a silly dance for 10 seconds.","Say a tongue twister three times.","Use a funny voice for one turn.","Make your funniest face.","Tell a harmless joke.","Give yourself a funny nickname.","Do a dramatic movie pose."];
+let players=[],active=null,mode="kids",used=new Set(),custom={truth:[],dare:[]},turn=0;
+function enterGame(){
+let n=document.getElementById("nickname").value.trim();
+mode=document.getElementById("mode").value;
+if(!n){alert("Enter your nickname first.");return}
+if(["adult","mixed","couples"].includes(mode)&&!confirm("Confirm that all players in this game are 18 or older?"))return;
+players=[n];active=n;
+document.getElementById("setup").classList.add("hidden");
+["game","play","custom","round"].forEach(id=>document.getElementById(id).classList.remove("hidden"));
+renderPlayers();show("Welcome, "+n+"! Add your friends, then spin the bottle.");
+}
+function addPlayer(){
+let input=document.getElementById("newPlayer"),n=input.value.trim();
+if(!n)return;
+if(players.length>=30){alert("This demo supports up to 30 players on this device.");return}
+if(players.some(p=>p.toLowerCase()===n.toLowerCase())){alert("That nickname is already in the game.");return}
+players.push(n);input.value="";renderPlayers();
+}
+function removePlayer(i){
+players.splice(i,1);
+if(active&&!players.includes(active))active=null;
+renderPlayers();show(players.length?"Player removed. Spin again.":"Add a player to continue.");
+}
+function renderPlayers(){
+document.getElementById("players").innerHTML=players.map((p,i)=>'<span class="player">'+esc(p)+' <button aria-label="Remove '+esc(p)+'" onclick="removePlayer('+i+')">×</button></span>').join("");
+}
+function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function show(s){document.getElementById("result").textContent=s;document.getElementById("roundInfo").textContent="Challenges used: "+used.size}
+function spinBottle(){
+if(!players.length){show("Add at least one player first.");return}
+active=players[Math.floor(Math.random()*players.length)];
+turn++;
+let b=document.getElementById("bottle");
+b.style.transform="rotate("+(720+Math.random()*1080)+"deg)";
+show("🍾 Selected: "+active+"\nNow choose Truth or Dare!");
+}
+function drawChallenge(type){
+if(!active){show("Spin the bottle first!");return}
+let list=[...pools[mode][type],...custom[type]];
+let available=list.filter(c=>!used.has(type+"|"+c));
+if(!available.length){show("No unused "+type+" challenges left! Start a new round to play again.");return}
+let c=available[Math.floor(Math.random()*available.length)];
+used.add(type+"|"+c);
+show("Player: "+active+"\n"+(type==="truth"?"🤫 TRUTH":"🔥 DARE")+"\n\n"+c);
+}
+function addCustom(){
+let type=document.getElementById("customType").value;
+let text=document.getElementById("customText").value.trim();
+if(!text){alert("Write a challenge first.");return}
+if(text.length>180)return;
+if([...pools[mode][type],...custom[type]].some(x=>x.toLowerCase()===text.toLowerCase())){alert("This challenge already exists in this mode.");return}
+custom[type].push(text);
+document.getElementById("customText").value="";
+show("Custom "+type+" added to this game's shared pool!");
+}
+function punishment(){
+if(!active){show("Spin the bottle first!");return}
+show("🎡 Punishment for "+active+":\n\n"+punishments[Math.floor(Math.random()*punishments.length)]+"\n\nYou can always decline.");
+}
+function skipChallenge(){show((active||"Player")+", you can skip any challenge. No punishment is required.");}
+function newRound(){used.clear();show("New round started! Challenges can be used again in this round.");}
+function resetGame(){if(!confirm("Reset this game and remove all players?"))return;location.reload()}
+</script>
 </body>
 </html>
