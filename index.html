@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0618">
+  <title>Truth or Dare Arena</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: radial-gradient(circle at top, #32105b, #0b0618 65%);
+    }
+    header {
+      padding: 22px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ffffff18;
+    }
+    .logo { font-size: 19px; font-weight: 900; }
+    .logo span { color: #c084fc; }
+    .tag { color: #c4b5fd; font-size: 11px; }
+    main {
+      width: min(100% - 32px, 600px);
+      margin: 48px auto;
+      text-align: center;
+    }
+    .pill {
+      display: inline-block;
+      padding: 8px 13px;
+      border: 1px solid #a855f755;
+      background: #a855f71b;
+      border-radius: 30px;
+      color: #d8b4fe;
+      font-size: 12px;
+    }
+    h1 {
+      font-size: clamp(38px, 10vw, 62px);
+      line-height: 1.05;
+      margin: 22px 0 15px;
+    }
+    h1 span { color: #c084fc; }
+    .intro {
+      color: #c4bfd3;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    .panel {
+      margin-top: 30px;
+      padding: 23px;
+      background: #ffffff08;
+      border: 1px solid #ffffff20;
+      border-radius: 22px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin: 15px 0 8px;
+      font-size: 13px;
+      color: #ddd6fe;
+    }
+    input, select {
+      width: 100%;
+      padding: 14px;
+      color: white;
+      background: #171024;
+      border: 1px solid #ffffff25;
+      border-radius: 11px;
+      font-size: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 18px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(100deg, #9333ea, #6d28d9);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 22px;
+      text-align: left;
+    }
+    .feature {
+      padding: 17px;
+      border-radius: 15px;
+      background: #ffffff08;
+      border: 1px solid #ffffff15;
+    }
+    .feature b { font-size: 14px; }
+    .feature p {
+      color: #aaa2bd;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    footer {
+      padding: 25px 15px;
+      color: #817891;
+      text-align: center;
+      font-size: 12px;
+    }
+    #notice {
+      color: #d8b4fe;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">TRUTH OR DARE <span>ARENA</span></div>
+    <div class="tag">MULTIPLAYER</div>
+  </header>
+
+  <main>
+    <div class="pill">✦ YOUR FRIENDS. YOUR CHALLENGES.</div>
+    <h1>How brave<br>are <span>you?</span></h1>
+    <p class="intro">
+      Spin the bottle. Reveal the truth.<br>
+      Take the dare. Make memories.
+    </p>
+
+    <section class="panel">
+      <h2 style="margin-top:0">Enter the Arena</h2>
+      <label for="nickname">Choose your nickname</label>
+      <input id="nickname" maxlength="20" placeholder="Enter a nickname">
+
+      <label for="mode">Choose your game mode</label>
+      <select id="mode">
+        <option value="kids">Kids</option>
+        <option value="teen">Teenagers</option>
+        <option value="adult">Adults (18+)</option>
+        <option value="mixed">Mixed (18+)</option>
+        <option value="couples">Couples</option>
+      </select>
+
+      <button onclick="startGame()">Enter Game Lobby →</button>
+      <p id="notice" role="status"></p>
+    </section>
+
+    <div class="features">
+      <div class="feature">
+        <b>🎯 Bottle Spin</b>
+        <p>Let luck choose the next player.</p>
+      </div>
+      <div class="feature">
+        <b>🔥 Truth & Dare</b>
+        <p>Random challenges, no repeats in a game.</p>
+      </div>
+      <div class="feature">
+        <b>🎡 Punishment Wheel</b>
+        <p>Funny punishments when you skip.</p>
+      </div>
+      <div class="feature">
+        <b>✍️ Your Own</b>
+        <p>Add custom truths and dares to the shared pool.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>TRUTH OR DARE ARENA · Play fair. Respect every player's choice.</footer>
+
+  <script>
+    function startGame() {
+      const nickname = document.getElementById("nickname").value.trim();
+      const mode = document.getElementById("mode").value;
+      const notice = document.getElementById("notice");
+
+      if (!nickname) {
+        notice.textContent = "Please enter a nickname first.";
+        return;
+      }
+
+      if (mode === "adult" || mode === "mixed" || mode === "couples") {
+        notice.textContent =
+          "Adult mode selected. Age verification and the real multiplayer lobby will be added before launch.";
+        return;
+      }
+
+      notice.textContent =
+        "Welcome, " + nickname + "! Your selected mode is saved for this demo. The multiplayer lobby is coming next.";
+    }
+  </script>
+</body>
+</html>
